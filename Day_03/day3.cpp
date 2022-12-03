@@ -44,12 +44,19 @@ int getScore(char c)
 	return c - 'A' + 27;
 }
 
-char findCommonChar(std::string s1, std::string s2)
+std::map<char, int> makeCharCountMap(std::string str)
 {
 	std::map<char, int> myMap;
 
-	for (int i = 0; i < s1.length(); i++)
-		myMap[s1[i]]++;
+	for (int i = 0; i < str.length(); i++)
+		myMap[str[i]]++;
+	return myMap;
+}
+
+/* find common char in 2 strings */
+char findCommonChar(std::string s1, std::string s2)
+{
+	std::map<char, int> myMap = makeCharCountMap(s1);
 
 	for (int i = 0; i < s2.length(); i++)
 		if (myMap[s2[i]] > 0)
@@ -57,15 +64,11 @@ char findCommonChar(std::string s1, std::string s2)
 	return 0;
 }
 
+/* find common char in a group of 3 strings */
 char findCommon(std::vector<std::string> group)
 {
-	std::map<char, int> mapOne;
-	std::map<char, int> mapTwo;
-
-	for (int i = 0; i < group[0].length(); i++)
-		mapOne[group[0][i]]++;
-	for (int j = 0; j < group[1].length(); j++)
-		mapTwo[group[1][j]]++;
+	std::map<char, int> mapOne = makeCharCountMap(group[0]);
+	std::map<char, int> mapTwo = makeCharCountMap(group[1]);
 
 	for (int k = 0; k < group[2].length(); k++)
 	{
