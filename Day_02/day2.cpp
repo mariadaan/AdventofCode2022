@@ -10,20 +10,6 @@ A rock
 B paper
 C scissors
 
-Bij A moet ik wel B gekozen hebben
-bij B moet ik wel C gekozen hebben
-bij C moet ik wel A gekozen hebben
-
-Bij A moet ik wel C gekozen hebben
-bij B moet ik wel A gekozen hebben
-bij C moet ik wel B gekozen hebben
-
-+ 1 of - 2
-
-X rock
-Y paper
-Z scissors
-
 A == X
 B == Y
 C == Z
@@ -39,9 +25,7 @@ Y - A = 24 win
 Z - A = 25 lose
 Z - B = 24 win
 
-X means you need to lose,
-Y means you need to end the round in a draw,
-and Z means you need to win.
+part 2:
 
 X = lose
 Y = draw
