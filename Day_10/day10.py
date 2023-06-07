@@ -25,17 +25,37 @@ for operation in instructions:
 	cycle += operation["duration"]
 	x += operation["x_change"]
 	if cycle in important_cycles or cycle + 1 in important_cycles:
-		entry = (cycle, x)
 		interesting_signals = [signal for signal in interesting_signals if cycle - 1 not in signal]
-		interesting_signals.append(entry)
+		interesting_signals.append((cycle, x))
 
 # calculate signal strength
 signal_strength_sum = 0
 for signal in interesting_signals:
-	cycle = signal[0]
+	cycle, x = signal[0], signal[1]
 	x = signal[1]
 	if (cycle % 2 != 0):
 		cycle += 1
 	signal_strength_sum += cycle * x
 
 print("answer part 1: ", signal_strength_sum)
+
+x = 1
+pixel = 0
+# loop through all pixels
+for operation in instructions:
+	if (pixel % 40 == 0):
+		print()
+	# define position of sprite
+	sprite = x - 1, x, x + 1
+	to_print = '#' if pixel % 40 in sprite else '.'
+	print(to_print, end='')
+	if (operation["instruction"] == "addx"):
+		sub_pixel = pixel + 1
+		if (sub_pixel % 40 == 0):
+			print()
+		to_print = '#' if sub_pixel % 40 in sprite else '.'
+		print(to_print, end='')
+
+	# update values
+	pixel += operation["duration"]
+	x += operation["x_change"]
